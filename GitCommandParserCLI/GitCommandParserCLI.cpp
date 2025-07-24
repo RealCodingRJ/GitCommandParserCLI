@@ -13,6 +13,18 @@ public:
 
 };
 
+class FilesConverted {
+
+public:
+
+	string fileOpened(string message) {
+
+
+		return message;
+
+	};
+
+};
 
 class GetCommandsParsing : PaserCommands {
 
@@ -22,7 +34,7 @@ public:
 		
 		ShellExecuteA(nullptr, "open", args.c_str(), nullptr, nullptr, SW_SHOWDEFAULT);
 
-		if (sizeof(args) == 0 && args == "Add") {
+		if (sizeof(args) == 0 || args == "Add") {
 
 
 			string args;
@@ -32,7 +44,7 @@ public:
 
 		}
 
-		if (sizeof(args) == 0 && args == "commit") {
+		if (sizeof(args) == 0 || args == "commit") {
 
 			string args;
 			cin >> args;
@@ -42,7 +54,7 @@ public:
 		}
 	
 
-		if (sizeof(args) == 0 && args == "/clone") {
+		if (sizeof(args) == 0 || args == "/clone") {
 
 			string args;
 			cin >> args;
@@ -72,23 +84,36 @@ int main() {
 
 	cout << endl;
 
-	PaserCommands Commands;
-	Commands.createCommands("Enter Type of Command: ");
+	ofstream file("url.txt");
+
+	FilesConverted fileConveter;
+
+	if (file.is_open()) {
 
 
-	string args;
-	cin >> args;
+		PaserCommands Commands;
+		Commands.createCommands("Enter Type of Command: ");
 
-	if (isEmpty(args)) {
 
-		cout << "EMPTY..." << endl;
+		string args;
+		cin >> args;
 
+
+
+		fileConveter.fileOpened(args);
+
+		if (isEmpty(args)) {
+
+			cout << "EMPTY..." << endl;
+
+		}
+
+
+		GetCommandsParsing CommandsParser;
+		CommandsParser.getArgs(args);
+
+		file.close();
 	}
-
-
-	GetCommandsParsing CommandsParser;
-	CommandsParser.getArgs(args);
-
 
 	system("pause > 0");
 	return 0;
