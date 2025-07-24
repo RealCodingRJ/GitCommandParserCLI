@@ -11,6 +11,7 @@ public:
 
 	}
 
+
 };
 
 class FilesConverted {
@@ -26,6 +27,7 @@ public:
 
 };
 
+
 class GetCommandsParsing : PaserCommands {
 
 public:
@@ -33,6 +35,16 @@ public:
 	void getArgs(string args) {
 		
 		ShellExecuteA(nullptr, "open", args.c_str(), nullptr, nullptr, SW_SHOWDEFAULT);
+
+		if (sizeof(args) == 0 || args == "Commands") {
+
+			list<string> commands = {"/Add", "/Commit", "/Clone", "/Push"};
+			for (string cmd : commands) {
+
+				cout << "Commands " << cmd << endl;
+			}
+
+		}
 
 		if (sizeof(args) == 0 || args == "Add") {
 
@@ -55,6 +67,15 @@ public:
 	
 
 		if (sizeof(args) == 0 || args == "/clone") {
+
+			string args;
+			cin >> args;
+
+			system(args.c_str());
+
+		}
+
+		if (sizeof(args) == 0 || args == "/Push") {
 
 			string args;
 			cin >> args;

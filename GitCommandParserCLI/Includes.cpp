@@ -3,5 +3,6 @@
 #include <fstream>
 #include <stdlib.h>
 #include <string>
+#include <list>
 
 using namespace std;
